@@ -144,6 +144,61 @@ P_mata_dado_adulto
 
 
 
+# GRÁFICOS
+
+#################################################################################################################
+# Gráfico 1: distribuição de sexo (frequência ou probabilidade)
+
+# Tabela de frequências
+freq_sexo <- table(dados_bio$Sexo)
+
+# Gráfico de barras das frequências
+barplot(freq_sexo,
+        main = "Distribuição de sexo",
+        xlab = "Sexo",
+        ylab = "Frequência",
+        col  = c("lightblue", "lightpink"))
+
+# Se preferir probabilidade empírica (frequência relativa):
+prop_sexo <- prop.table(freq_sexo)
+
+barplot(prop_sexo,
+        main = "Probabilidade empírica de sexo",
+        xlab = "Sexo",
+        ylab = "Probabilidade",
+        col  = c("lightblue", "lightpink"),
+        ylim = c(0, 1))
+
+
+
+
+#################################################################################################################
+# Gráfico 2: distribuição de Habitat (probabilidade empírica)
+
+freq_hab <- table(dados_bio$Habitat)
+prop_hab <- prop.table(freq_hab)
+
+barplot(prop_hab,
+        main = "Probabilidade empírica de Habitat",
+        xlab = "Habitat",
+        ylab = "Probabilidade",
+        col  = c("darkgreen", "orange", "gray"),
+        ylim = c(0, 1))
+
+
+
+#################################################################################################################
+# Gráfico 3: histograma do comprimento (distribuição aproximada)
+
+hist(dados_bio$Comprimento_cm,
+     main = "Distribuição de Comprimento (cm)",
+     xlab = "Comprimento (cm)",
+     ylab = "Frequência",
+     col  = "lightgray",
+     border = "white")
+
+
+
 
 
 
