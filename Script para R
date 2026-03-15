@@ -1,0 +1,149 @@
+Abram o R ou R-Studio
+
+
+#################################################################################################################
+#Primeiro código
+# fixa a "semente" do gerador de números aleatórios; garante que, se você rodar o script de novo, os mesmos valores aleatórios serão gerados (reprodutibilidade).
+
+set.seed(123)
+
+
+#################################################################################################################
+# Segundo código
+# cria um vetor de IDs de 1 até 10, representando os 10 indivíduos amostrados.
+
+ID <- 1:10
+
+
+#################################################################################################################
+# Terceiro código
+# sorteia o sexo de cada indivíduo:
+# - c("M","F") é o conjunto de possibilidades (macho, fêmea);
+# - size = 10 indica que queremos 10 sorteios (para 10 indivíduos);
+# - replace = TRUE permite repetir valores (podem existir vários machos ou fêmeas);
+# - prob = c(0.5, 0.5) define a probabilidade teórica de cada sexo (50% para cada).
+
+
+Sexo <- sample(c("M","F"), size = 10, replace = TRUE, prob = c(0.5, 0.5))  
+
+
+#################################################################################################################
+# Quarto código
+# sorteia o habitat de cada indivíduo entre três categorias:
+# - "Mata", "Cerrado", "Urbano" são os possíveis habitats;
+# - size = 10, replace = TRUE como antes;
+# - prob = c(0.4, 0.4, 0.2) indica que Mata e Cerrado têm 40% de chance cada,
+#   e Urbano tem 20% de chance em cada sorteio.
+
+
+Habitat <- sample(c("Mata","Cerrado","Urbano"), size = 10, replace = TRUE, prob = c(0.4, 0.4, 0.2))
+
+
+#################################################################################################################
+# Quinto código
+# comprimento médio ~16.5 cm, sd ~0.5
+# gera 10 valores de comprimento a partir de uma distribuição Normal:
+# - rnorm(10, mean = 16.5, sd = 0.5) sorteia 10 comprimentos com média 16.5 cm
+#   e desvio-padrão 0.5 cm (valores contínuos);
+# - round(..., 1) arredonda cada valor para 1 casa decimal,
+#   para ficar mais “biológico” (medidas com uma casa decimal).
+
+
+Comprimento_cm <- round(rnorm(10, mean = 16.5, sd = 0.5), 1)
+
+
+
+#################################################################################################################
+# Sexto código
+# massa ligada ao comprimento (aprox. 2 g por cm + ruído)
+# calcula a massa a partir do comprimento com um pouco de aleatoriedade:
+# - 2 * Comprimento_cm cria uma relação linear simples (aprox. 2 g por cm);
+# - rnorm(10, mean = 0, sd = 1) adiciona um ruído aleatório (Normal, média 0, sd 1),
+#   para que nem todos os indivíduos com o mesmo comprimento tenham exatamente a mesma massa;
+# - round(..., 1) arredonda a massa para 1 casa decimal.
+
+
+Massa_g <- round(2 * Comprimento_cm + rnorm(10, mean = 0, sd = 1), 1)
+
+
+#################################################################################################################
+# Sétimo código
+# sorteia a classe de idade:
+# - "Jovem" ou "Adulto" são as categorias;
+# - prob = c(0.3, 0.7) define 30% de chance de ser Jovem e 70% de ser Adulto,
+#   o que pode refletir uma população com mais adultos que jovens.
+
+
+Idade_classe <- sample(c("Jovem","Adulto"), size = 10, replace = TRUE, prob = c(0.3, 0.7))
+
+
+
+#################################################################################################################
+# Oitavo código
+# junta todos os vetores criados em um data.frame:
+# - cada argumento vira uma coluna;
+# - cada linha representa um indivíduo;
+# - 'dados_bio' é então uma tabela biológica simulada com 10 indivíduos.
+
+
+dados_bio <- data.frame(ID, Sexo, Habitat, Comprimento_cm, Massa_g, Idade_classe)
+
+
+
+#################################################################################################################
+# Nono código
+# exibe a tabela resultante no console, para você ver os dados gerados.
+
+dados_bio
+
+
+
+#################################################################################################################
+# Décimo código
+# Tabela de frequências de sexo
+
+table(dados_bio$Sexo)
+
+# Probabilidade empírica (frequência relativa)
+
+prop.table(table(dados_bio$Sexo))
+
+# Ou diretamente:
+
+P_macho  <- mean(dados_bio$Sexo == "M")
+P_femea  <- mean(dados_bio$Sexo == "F")
+
+P_macho
+P_femea
+
+
+
+#################################################################################################################
+# Décimo primeiro código
+# P(Mata) = nº de indivíduos em Mata / nº total de indivíduos
+
+P_mata <- mean(dados_bio$Habitat == "Mata")
+
+P_mata
+
+
+#################################################################################################################
+# Décimo segundo código
+# Filtrar apenas os adultos
+
+adultos <- dados_bio[dados_bio$Idade_classe == "Adulto", ]
+
+# P(Mata | Adulto) = nº de adultos em Mata / nº total de adultos
+
+
+P_mata_dado_adulto <- mean(adultos$Habitat == "Mata")
+
+P_mata_dado_adulto
+
+
+
+
+
+
+
+
