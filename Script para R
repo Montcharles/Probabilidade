@@ -10,46 +10,46 @@ set.seed(123)
 
 #################################################################################################################
 # Segundo código
-# cria um vetor de IDs de 1 até 10, representando os 10 indivíduos amostrados.
+# cria um vetor de IDs de 1 até 100, representando os 100 indivíduos amostrados.
 
-ID <- 1:10
+ID <- 1:100
 
 
 #################################################################################################################
 # Terceiro código
 # sorteia o sexo de cada indivíduo:
 # - c("M","F") é o conjunto de possibilidades (macho, fêmea);
-# - size = 10 indica que queremos 10 sorteios (para 10 indivíduos);
+# - size = 100 indica que queremos 100 sorteios (para 100 indivíduos);
 # - replace = TRUE permite repetir valores (podem existir vários machos ou fêmeas);
 # - prob = c(0.5, 0.5) define a probabilidade teórica de cada sexo (50% para cada).
 
 
-Sexo <- sample(c("M","F"), size = 10, replace = TRUE, prob = c(0.5, 0.5))  
+Sexo <- sample(c("M","F"), size = 100, replace = TRUE, prob = c(0.5, 0.5))  
 
 
 #################################################################################################################
 # Quarto código
 # sorteia o habitat de cada indivíduo entre três categorias:
 # - "Mata", "Cerrado", "Urbano" são os possíveis habitats;
-# - size = 10, replace = TRUE como antes;
+# - size = 100, replace = TRUE como antes;
 # - prob = c(0.4, 0.4, 0.2) indica que Mata e Cerrado têm 40% de chance cada,
 #   e Urbano tem 20% de chance em cada sorteio.
 
 
-Habitat <- sample(c("Mata","Cerrado","Urbano"), size = 10, replace = TRUE, prob = c(0.4, 0.4, 0.2))
+Habitat <- sample(c("Mata","Cerrado","Urbano"), size = 100, replace = TRUE, prob = c(0.4, 0.4, 0.2))
 
 
 #################################################################################################################
 # Quinto código
 # comprimento médio ~16.5 cm, sd ~0.5
-# gera 10 valores de comprimento a partir de uma distribuição Normal:
-# - rnorm(10, mean = 16.5, sd = 0.5) sorteia 10 comprimentos com média 16.5 cm
+# gera 100 valores de comprimento a partir de uma distribuição Normal:
+# - rnorm(100, mean = 16.5, sd = 0.5) sorteia 100 comprimentos com média 16.5 cm
 #   e desvio-padrão 0.5 cm (valores contínuos);
 # - round(..., 1) arredonda cada valor para 1 casa decimal,
 #   para ficar mais “biológico” (medidas com uma casa decimal).
 
 
-Comprimento_cm <- round(rnorm(10, mean = 16.5, sd = 0.5), 1)
+Comprimento_cm <- round(rnorm(100, mean = 16.5, sd = 0.5), 1)
 
 
 
@@ -58,12 +58,12 @@ Comprimento_cm <- round(rnorm(10, mean = 16.5, sd = 0.5), 1)
 # massa ligada ao comprimento (aprox. 2 g por cm + ruído)
 # calcula a massa a partir do comprimento com um pouco de aleatoriedade:
 # - 2 * Comprimento_cm cria uma relação linear simples (aprox. 2 g por cm);
-# - rnorm(10, mean = 0, sd = 1) adiciona um ruído aleatório (Normal, média 0, sd 1),
+# - rnorm(100, mean = 0, sd = 1) adiciona um ruído aleatório (Normal, média 0, sd 1),
 #   para que nem todos os indivíduos com o mesmo comprimento tenham exatamente a mesma massa;
 # - round(..., 1) arredonda a massa para 1 casa decimal.
 
 
-Massa_g <- round(2 * Comprimento_cm + rnorm(10, mean = 0, sd = 1), 1)
+Massa_g <- round(2 * Comprimento_cm + rnorm(100, mean = 0, sd = 1), 1)
 
 
 #################################################################################################################
@@ -74,7 +74,7 @@ Massa_g <- round(2 * Comprimento_cm + rnorm(10, mean = 0, sd = 1), 1)
 #   o que pode refletir uma população com mais adultos que jovens.
 
 
-Idade_classe <- sample(c("Jovem","Adulto"), size = 10, replace = TRUE, prob = c(0.3, 0.7))
+Idade_classe <- sample(c("Jovem","Adulto"), size = 100, replace = TRUE, prob = c(0.3, 0.7))
 
 
 
